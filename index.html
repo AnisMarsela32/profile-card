@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags untuk pengaturan karakter dan viewport -->
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <!-- Judul halaman -->
+    <title>Interactive Profile Card</title>
+
+    <!-- Menggunakan Tailwind CSS untuk styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Menggunakan Font Awesome untuk ikon sosial media -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+
+    <!-- Styling CSS tambahan untuk efek hover -->
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .flower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('bunga.png');
+            /* Gambar bunga */
+            background-size: cover;
+            animation: float 5s linear infinite;
+            /* opacity: 1; */
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Efek hover untuk menampilkan info profil */
+        .profile-card:hover .profile-info {
+            transform: translateY(0);
+            /* Menggeser info profil ke posisi awal */
+            opacity: 1;
+            /* Menampilkan info profil */
+        }
+
+        /* Efek hover untuk memperbesar ikon sosial media */
+        .profile-card:hover .social-icons a {
+            transform: scale(1.2);
+            /* Memperbesar ikon */
+        }
+    </style>
+</head>
+
+<body class="bg-pink-100 flex items-center justify-center min-h-screen">
+    <!-- Kartu profil dengan efek hover dan animasi -->
+    <div
+        class="profile-card bg-white shadow-lg rounded-lg overflow-hidden w-80 transform transition-transform duration-300 hover:scale-105">
+        <!-- Gambar profil -->
+        <img alt="Profile picture of a person" class="w-full h-60 object-cover" height="240" src="foto.png"
+            width="320" />
+
+        <!-- Bagian informasi dasar profil -->
+        <div class="p-4">
+            <h2 class="text-xl font-semibold text-pink-600">Anis Marsela</h2>
+            <p class="text-pink-400">Web Developer</p>
+        </div>
+
+        <!-- Bagian info tambahan yang muncul saat hover -->
+        <div
+            class="profile-info bg-pink-600 text-white p-4 transform translate-y-full opacity-0 transition-all duration-300">
+            <!-- Deskripsi profil -->
+            <p class="mb-2">
+                Setiap hari adalah kesempatan baru untuk belajar dan berkembang.
+            </p>
+
+            <!-- Ikon sosial media -->
+            <div class="social-icons flex space-x-4">
+                <!-- Facebook -->
+                <a class="text-white hover:text-pink-300 transition-transform duration-300" href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <!-- Twitter -->
+                <a class="text-white hover:text-pink-300 transition-transform duration-300" href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+
+                <!-- LinkedIn -->
+                <a class="text-white hover:text-pink-300 transition-transform duration-300" href="#">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+                <!-- GitHub -->
+                <a class="text-white hover:text-pink-300 transition-transform duration-300" href="#">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            document.body.appendChild(flower);
+
+            const startPosX = Math.random() * window.innerWidth;
+            flower.style.left = `${startPosX}px`;
+
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }
+
+        setInterval(createFlower, 300);
+    </script>
+</body>
+
+</html>
